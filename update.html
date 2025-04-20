@@ -5,18 +5,31 @@
   <title>Solstice - Coming Soon</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       background-color: #0b0b0b;
       font-family: 'Source Code Pro', monospace;
       color: #f44336;
-      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAMAAAC6sdbKAAAAMFBMVEXMzMyWlpbCwsKmpqbR0dG4uLhpaWnT09PZ2dnR0dH8/PzKysr///+AgIBLS0tLS0tISEiQkJDUkZ9wAAAAB3RSTlMA//8A18oNQQAAAElJREFUCNdjYGBgZGRkYGBoZ2BgYGRkYGFgYGJkZGBgZGBgYGZmZmFhYmBkYOBgYGBgYmRkYGBkZGAAAwAA99YIG38K5wsAAAAASUVORK5CYII=');
+      overflow: hidden;
     }
 
     .container {
+      position: relative;
+      z-index: 2;
       text-align: center;
       padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #f44336;
+      text-shadow: 0 0 10px #f44336;
+      margin-bottom: 50px;
     }
 
     .invite-box {
@@ -33,13 +46,6 @@
       text-decoration: none;
       color: #f44336;
       font-size: 18px;
-    }
-
-    h1 {
-      font-size: 40px;
-      color: #f44336;
-      text-shadow: 0 0 10px #f44336;
-      margin-bottom: 50px;
     }
 
     .coming-soon {
@@ -69,9 +75,56 @@
       color: #0b0b0b;
       box-shadow: 0 0 20px #f44336;
     }
+
+    /* Background balls */
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .ball {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #f44336;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #f44336, 0 0 30px #f44336;
+      opacity: 0.6;
+      animation: floatBall 20s linear infinite;
+    }
+
+    @keyframes floatBall {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <div class="background">
+    <!-- Generate multiple balls with inline styles for randomness -->
+    <div class="ball" style="left: 10%; animation-delay: 0s; width: 20px; height: 20px;"></div>
+    <div class="ball" style="left: 25%; animation-delay: 3s;"></div>
+    <div class="ball" style="left: 40%; animation-delay: 6s; width: 30px; height: 30px;"></div>
+    <div class="ball" style="left: 55%; animation-delay: 2s;"></div>
+    <div class="ball" style="left: 70%; animation-delay: 4s; width: 18px; height: 18px;"></div>
+    <div class="ball" style="left: 85%; animation-delay: 1s; width: 26px; height: 26px;"></div>
+    <div class="ball" style="left: 90%; animation-delay: 5s;"></div>
+  </div>
 
   <div class="container">
     <h1>Solstice - Discord Server</h1>
