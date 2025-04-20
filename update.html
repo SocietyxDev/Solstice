@@ -115,13 +115,13 @@
 
     let particles = [];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 200; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        dx: (Math.random() - 0.5) * 1,
-        dy: (Math.random() - 0.5) * 1,
+        radius: Math.random() * 2 + .5,
+        dx: (Math.random() - 0.5) * .3,
+        dy: (Math.random() - 0.5) * .3,
       });
     }
 
