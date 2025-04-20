@@ -17,30 +17,15 @@
       color: #f44336;
       overflow: hidden;
       position: relative;
+      height: 100vh;
+      width: 100vw;
     }
 
-    /* === Brighter, animated glowing red grid === */
-    .animated-bg {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
       z-index: 0;
-      background: radial-gradient(circle, rgba(244,67,54,0.4) 1px, transparent 1px);
-      background-size: 30px 30px;
-      animation: moveGrid 6s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(244,67,54,0.6));
-      opacity: 0.2;
-    }
-
-    @keyframes moveGrid {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 30px 30px;
-      }
     }
 
     .container {
@@ -104,10 +89,10 @@
 </head>
 <body>
 
-  <!-- Glowing animated background -->
-  <div class="animated-bg"></div>
+  <!-- 🔥 Canvas Background -->
+  <canvas id="cyberBackground"></canvas>
 
-  <!-- Main content -->
+  <!-- 🔗 Main content -->
   <div class="container">
     <h1>Solstice - Discord Server</h1>
 
@@ -120,5 +105,53 @@
     <a href="index.html" class="button">← Back</a>
   </div>
 
+  <!-- 🔮 Background Animation Script -->
+  <script>
+    const canvas = document.getElementById('cyberBackground');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 1,
+        dy: (Math.random() - 0.5) * 1,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.shadowColor = "#f44336";
+      ctx.shadowBlur = 10;
+
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#f44336";
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
