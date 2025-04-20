@@ -19,7 +19,7 @@
       position: relative;
     }
 
-    /* === Glowing Animated Tech Grid Background === */
+    /* === Brighter, animated glowing red grid === */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -27,23 +27,22 @@
       height: 100%;
       width: 100%;
       z-index: 0;
-      background: radial-gradient(#f44336 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: pulse 4s linear infinite;
-      opacity: 0.05;
-      filter: drop-shadow(0 0 3px #f44336);
+      background: radial-gradient(circle, rgba(244,67,54,0.4) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: moveGrid 6s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(244,67,54,0.6));
+      opacity: 0.2;
     }
 
-    @keyframes pulse {
+    @keyframes moveGrid {
       0% {
         background-position: 0 0;
       }
       100% {
-        background-position: 50px 50px;
+        background-position: 30px 30px;
       }
     }
 
-    /* === Main Content === */
     .container {
       position: relative;
       z-index: 1;
